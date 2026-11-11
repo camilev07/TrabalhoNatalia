@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Falha proposital do desafio
-        run: comando_que_nao_existe
       - name: Smoke test
         run: test -f index.html
       - name: Explorando o Runner
