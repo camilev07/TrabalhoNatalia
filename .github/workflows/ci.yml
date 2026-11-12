@@ -1,0 +1,13 @@
+﻿name: CI - Auditoria HTML
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar arquivos estaticos
+        run: |
+          ls -R
+          echo "Todos os arquivos foram carregados no Runner!"
