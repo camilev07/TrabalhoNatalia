@@ -15,4 +15,4 @@ jobs:
           echo "Arquivos HTML:"
           find . -name "*.html" | wc -l
       - name: Validar sintaxe do HTML
-        run: npx --yes htmlhint@1.1.4 "**/*.html"
+        run: npx --yes htmlhint@1.9.2 "**/*.html"
