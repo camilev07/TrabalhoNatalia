@@ -1,4 +1,4 @@
-name: Deploy do Trabalho Natalia
+﻿name: Deploy do Trabalho Natalia
 on:
   push:
     branches: [main]
@@ -16,16 +16,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Smoke test
-        run: test -f index.html
-      - name: Explorando o Runner
-        run: lsb_release -a && free -h && nproc
+      - name: Preparar pacote dist
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cp ./*.html dist/
+          cp -R assets dist/
+          cp -R css dist/
+          ls -R dist
+      - name: Auditoria de Qualidade
+        run: |
+          for arquivo in index.html sobre.html contato.html; do
+            test -f "dist/$arquivo" || { echo "Arquivo nao encontrado: dist/$arquivo"; exit 1; }
+          done
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Preparar artefato
         uses: actions/upload-pages-artifact@v4
         with:
-          path: '.'
+          path: './dist'
   publicar-site:
     needs: validacao
     runs-on: ubuntu-latest
