@@ -7,7 +7,12 @@ jobs:
   auditoria:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
       - name: Checar arquivos estaticos
         run: |
           ls -R
-          echo "Todos os arquivos foram carregados no Runner!"
+          echo "Arquivos HTML:"
+          find . -name "*.html" | wc -l
+      - name: Validar sintaxe do HTML
+        run: npx --yes htmlhint@1.1.4 "**/*.html"
