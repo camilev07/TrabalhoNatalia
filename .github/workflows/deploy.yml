@@ -1,4 +1,4 @@
-﻿name: Deploy do Trabalho Natalia
+name: Deploy do Trabalho Natalia
 on:
   push:
     branches: [main]
@@ -26,7 +26,7 @@ jobs:
           ls -R dist
       - name: Auditoria de Qualidade
         run: |
-          for arquivo in index.html sobre.html contato.html; do
+          for arquivo in index.html "quem somos.html" contato.html; do
             test -f "dist/$arquivo" || { echo "Arquivo nao encontrado: dist/$arquivo"; exit 1; }
           done
       - name: Configurar Pages
